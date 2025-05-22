@@ -1,7 +1,7 @@
 import { PlusCircle } from "lucide-react";
 import React, { useState } from "react";
 
-function TaskForm() {
+function TaskForm({ handleTask }) {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("personal");
   const [priority, setPriority] = useState("medium");
@@ -23,7 +23,9 @@ function TaskForm() {
       completed: false,
       createdAt: new Date().toISOString(),
     };
-    console.log(newTask);
+
+    handleTask(newTask);
+
     setTitle("");
     setCategory("personal");
     setPriority("medium");
@@ -59,6 +61,8 @@ function TaskForm() {
             name="category"
             id="category"
             className="w-full px-4 py-2 border border-gray-300 rounded"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
           >
             <option value="work">Work</option>
             <option value="personal">Personal</option>
@@ -74,6 +78,8 @@ function TaskForm() {
             name="priority"
             id="priority"
             className="w-full px-4 py-2 border border-gray-300 rounded"
+            value={priority}
+            onChange={(e) => setPriority(e.target.value)}
           >
             <option value="high">High</option>
             <option value="medium">Medium</option>
