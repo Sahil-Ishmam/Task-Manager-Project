@@ -2,6 +2,33 @@ import { PlusCircle } from "lucide-react";
 import React, { useState } from "react";
 
 function TaskForm() {
+     const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("personal");
+  const [priority, setPriority] = useState("medium");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (title.trim() === "") {
+      setError("Title is required!!!");
+      return;
+    }
+
+    const newTask = {
+      id: crypto.randomUUID(),
+      title: title.trim(),
+      category: category,
+      priority: priority,
+      completed: false,
+      createdAt: new Date().toISOString(),
+    };
+    console.log(newTask);
+    setTitle("");
+    setCategory("personal");
+    setPriority("medium");
+    setError("");
+  };
  
   return (
     <div className="bg-white p-6 mt-8 rounded-lg shadow-md">
