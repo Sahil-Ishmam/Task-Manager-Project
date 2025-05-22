@@ -2,7 +2,7 @@ import { PlusCircle } from "lucide-react";
 import React, { useState } from "react";
 
 function TaskForm() {
-     const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("");
   const [category, setCategory] = useState("personal");
   const [priority, setPriority] = useState("medium");
   const [error, setError] = useState("");
@@ -29,11 +29,11 @@ function TaskForm() {
     setPriority("medium");
     setError("");
   };
- 
+
   return (
     <div className="bg-white p-6 mt-8 rounded-lg shadow-md">
       <h2 className="text-xl font-semibold text-gray-800 mb-4">Add New Task</h2>
-      <form className="space-y-4" >
+      <form className="space-y-4" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title" className="block mb-1">
             Task Title
@@ -42,11 +42,11 @@ function TaskForm() {
             type="text"
             name="title"
             id="title"
-            
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded"
             placeholder="Enter Task Title...."
           />
-          
         </div>
         <div>
           <label htmlFor="category" className="block mb-1">
@@ -55,7 +55,6 @@ function TaskForm() {
           <select
             name="category"
             id="category"
-            
             className="w-full px-4 py-2 border border-gray-300 rounded"
           >
             <option value="work">Work</option>
@@ -71,7 +70,6 @@ function TaskForm() {
           <select
             name="priority"
             id="priority"
-            
             className="w-full px-4 py-2 border border-gray-300 rounded"
           >
             <option value="high">High</option>
