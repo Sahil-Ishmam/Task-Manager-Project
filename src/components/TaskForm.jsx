@@ -47,6 +47,9 @@ function TaskForm() {
             className="w-full px-4 py-2 border border-gray-300 rounded"
             placeholder="Enter Task Title...."
           />
+
+          {/* error */}
+          {error && <p className="text-red-500 text-sm">{error}</p>}
         </div>
         <div>
           <label htmlFor="category" className="block mb-1">
