@@ -2,7 +2,7 @@ import { Clipboard } from "lucide-react";
 import React from "react";
 import TaskItem from "./TaskItem";
 
-function TaskList({ tasks, handleDelete }) {
+function TaskList({ tasks, handleDelete, handleToggleCompleted }) {
   if (tasks.length === 0) {
     return (
       <div className="bg-white rounded shadow p-8 text-center mt-6">
@@ -17,7 +17,12 @@ function TaskList({ tasks, handleDelete }) {
     <div className="space-y-1 mt-6">
       {/* loop through tasks */}
       {tasks.map((task) => (
-        <TaskItem key={task.id} task={task} handleDelete={handleDelete} />
+        <TaskItem
+          key={task.id}
+          task={task}
+          handleDelete={handleDelete}
+          handleToggleCompleted={handleToggleCompleted}
+        />
       ))}
     </div>
   );

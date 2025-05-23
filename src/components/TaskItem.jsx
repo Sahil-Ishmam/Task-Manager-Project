@@ -1,7 +1,7 @@
 import { CheckCircle, Circle, Trash2 } from "lucide-react";
 import React from "react";
 
-function TaskItem({ task, handleDelete }) {
+function TaskItem({ task, handleDelete, handleToggleCompleted }) {
   const formattedData = new Date(task.createdAt).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
@@ -14,7 +14,10 @@ function TaskItem({ task, handleDelete }) {
       }`}
     >
       <div className="flex items-center gap-3 flex-1">
-        <button className="mt-1 flex-shrink-0 transition-transform duration-200 hover:scale-110 focus:outline:none">
+        <button
+          onClick={()=>handleToggleCompleted(task.id)}
+          className="mt-1 flex-shrink-0 transition-transform duration-200 hover:scale-110 focus:outline:none"
+        >
           {task.completed ? (
             <CheckCircle className="h-5 w-5 text-green-500" />
           ) : (
@@ -51,7 +54,7 @@ function TaskItem({ task, handleDelete }) {
 
             <button
               onClick={() => handleDelete(task.id)}
-              className="text-gray-500"
+              className="text-gray-500 cursor-pointer"
               area-label="Delete Task"
               title="Delete Task"
             >

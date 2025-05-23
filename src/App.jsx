@@ -35,7 +35,14 @@ function App() {
     setTasks(updatedTasks);
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   };
-
+  const handleToggleCompleted = (id) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    );
+    setTasks(updatedTasks);
+    // save to local storage
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  };
   useEffect(() => {
     const storedTask = JSON.parse(localStorage.getItem("tasks")) || [];
     setTasks(storedTask);
@@ -52,7 +59,11 @@ function App() {
           tasksCount={taskCounts}
         />
 
-        <TaskList tasks={tasks} handleDelete={handleDelete} />
+        <TaskList
+          tasks={filteredTasks}
+          handleDelete={handleDelete}
+          handleToggleCompleted={handleToggleCompleted}
+        />
       </div>
     </div>
   );
